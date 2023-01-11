@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin:0%;
+            padding: 0%;
+            /* border:5px solid black; */
+            display:flex;
+            justify-content:center;
+            text-align:center;
+        }
+        form{
+            border:5px solid black;
+            width:70%;
+            margin:30px;
+            align-self:center;
+        }
+        .fdate{
+            margin-top:40px;
+        }
+        .date input{
+            width:80%;
+            height:80px;
+            margin:20px;
+            border:2px solid black;
+            text-align:center;
+            font-size:25px;
+        }
+        .button input{
+            width:60%;
+            height:80px; 
+            border:2px solid black;
+            font-size:25px;
+        }
+        .result input{
+            width:80%;
+            height:130px;
+            margin:20px;
+            border:2px solid black;
+            font-size:25px;
+            text-align:center;
+        }
+
+    </style>
+    <script defer>
+        function fetchdate(){
+        const date1 = new Date(d1.value);
+        const date2 = new Date(d2.value);
+        const time = Math.abs(date1 - date2);
+        const days = Math.floor(time / (1000*60*60*24));
+        // const month = Math.floor(days/30);
+        // const years = Math.floor(month/12);
+        // console.log(time);
+        // console.log(days);
+        // console.log(month);
+        // console.log(years);
+        if(days>0 && days<30){
+            document.getElementById("result").value=days+" days";
+        }
+        else if(days>30 && days<365){
+            let months=days/30;
+            let day=30*(months%1);
+            document.getElementById("result").value=Math.floor(months)+" months "+Math.floor(day)+" days";
+        }
+        else if(days > 365)
+        {
+            let year=days/365;
+            let month=((365*(year%1))/30);
+            let day=30*(month%1);
+            document.getElementById("result").value=Math.floor(year)+" years "+Math.floor(month)+" months "+Math.floor(day)+" days";
+        }
+        else{
+            document.getElementById("result").value=0+" days";
+        }
+    }
+    </script>    
+</head>
+<body>
+    <form id="myForm"  action="">
+        <div class="fdate date">
+            <input type="date" id="d1"  value="" >
+        </div>
+         <div class="sdate date">
+            <input type="date" id="d2" value="" >
+        </div>
+        <div class="button">
+            <input type="button" onclick="fetchdate()" value="Calculate Diffrence">
+        </div>
+        <div class="result">
+            <input type="text" id="result" value="">
+        </div>
+    </from>
+</body>
+</html>

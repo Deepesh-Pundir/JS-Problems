@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="arr"></p>
+    <script>
+        function filterFruits(arr)
+        {
+            var fruitsDb=["apple","banana","orange","pineapple","grapes","avacado","strawberry"];
+            let result=[];
+            let count=0;
+            for(let i=0;i<arr.length;i++)
+            {
+                for(let j=0;j<fruitsDb.length;j++)
+                {
+                    if(arr[i]==fruitsDb[j])
+                    {
+                        result[count]=fruitsDb[j];
+                        count++;
+                    }
+                }
+            }
+            return result;
+        }
+        let mixFruitsArray=["grapes","cabbage","tomato","banana"];
+        let result=filterFruits(mixFruitsArray);
+        // document.write(Array.isArray(result));
+        document.write("["+result+"]");
+    </script>
+</body>
+</html>

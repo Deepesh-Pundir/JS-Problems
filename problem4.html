@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Sort the object by Empid in ascending order:</h2>
+<p id="demo1"></p>
+<script>
+    const emp=[
+        {name:'Jhon Deo',dept:'php',empid:5},
+        {name:'Paul Smith',dept:'MERN',empid:4},
+        {name:'Tom Smith',dept:'SEO',empid:7}
+    ];
+    let a=[];
+    let data='';
+    for(let i=0;i<emp.length;i++)
+    {   
+        a[i]=emp[i].empid;
+    }
+    // a.sort(function(a, b){return b - a});
+    a.sort();
+    for(let i=0;i<a.length;i++)
+    {
+        for(let j=0;j<emp.length;j++){
+            if(emp[j].empid==a[i]){
+                data+="Name: "+emp[j].name+",<br>"+"Dept: "+emp[j].dept+",<br>"+"Empid: "+emp[j].empid+"<br><br>";
+                console.log("Name: "+emp[j].name+",\n"+"Dept: "+emp[j].dept+",\n"+"Empid: "+emp[j].empid);
+            }
+        }
+    }
+    document.getElementById("demo1").innerHTML=data;    
+    console.log(a);
+</script>
+</body>
+</html>

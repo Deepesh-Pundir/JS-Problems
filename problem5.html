@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .date{
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Forecast</h1>
+    <h3 id="h2"></h3>
+    <button id="b1" onclick="today()">Today Weather</button>
+    <button id="b1" onclick="tommarow()">Tommarow Weather</button>
+    <button id="b1" onclick="next()">10 days Weather</button>
+    <p id="current"></p>
+    <script defer>
+        let loc='';
+        let today_weather='';
+        let tommarow_weather='';
+        let next_weather='';
+        function get_data(){
+            let fetch_api=fetch("http://api.weatherapi.com/v1/forecast.json?key=fcbc6d7616fb49788e3112334231201&q=London&days=10&aqi=no&alerts=no");
+            fetch_api.then((value1)=>{
+                return value1.json()
+            }).then((value2)=>{
+                console.log(value2)
+                loc=JSON.stringify(value2.location);
+                document.getElementById('h2').innerHTML = loc;
+                for(let x in value2.current)
+                {
+                        today_weather+='<li>' +x+":"+value2.current[x]+'</li>';
+                }
+                for(let x in value2.forecast.forecastday[1])
+                {
+                        if(typeof(value2.forecast.forecastday[1][x])!='object'){
+                            tommarow_weather+='<li>' +x+":"+value2.forecast.forecastday[1][x]+'</li>';
+                        }else{
+                           
+                            for(let y in value2.forecast.forecastday[1][x]){
+                                
+                                if(typeof(value2.forecast.forecastday[1][x][y])!='object'){
+                                    tommarow_weather+='<li>' +y+":"+value2.forecast.forecastday[1][x][y]+'</li>';
+                                }
+                                else{
+                                    if(typeof(value2.forecast.forecastday[1][x][y].time)!='undefined'){
+                                    tommarow_weather+="<li class='date'>"+"*****************"+value2.forecast.forecastday[1][x][y].time+"****************************"+"</li>";}
+                                    for(let z in value2.forecast.forecastday[1][x][y])
+                                    {
+                                        if(typeof(value2.forecast.forecastday[1][x][y][z])!='object'){
+                                            tommarow_weather+='<li>' +z+":"+value2.forecast.forecastday[1][x][y][z]+'</li>';
+                                        }
+                                        else{    
+                                            for(let a in value2.forecast.forecastday[1][x][y][z])
+                                            {
+                                                tommarow_weather+='<li>' +a+":"+value2.forecast.forecastday[1][x][y][z][a]+'</li>';
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                }
+                for(let i in value2.forecast.forecastday)
+                {
+                    next_weather+="<li class='date'>"+"************* Date: "+value2.forecast.forecastday[i].date+" Weather *************"+"</li>";
+                    for(let x in value2.forecast.forecastday[i])
+                    {
+                        if(typeof(value2.forecast.forecastday[i][x])!='object'){
+                            next_weather+='<li>' +x+":"+value2.forecast.forecastday[i][x]+'</li>';
+                        }else{
+                           
+                            for(let y in value2.forecast.forecastday[i][x]){
+                                
+                                if(typeof(value2.forecast.forecastday[i][x][y])!='object'){
+                                    next_weather+='<li>' +y+":"+value2.forecast.forecastday[i][x][y]+'</li>';
+                                }
+                                else{
+                                    if(typeof(value2.forecast.forecastday[i][x][y].time)!='undefined'){
+                                    next_weather+="<li class='date'>"+"*****************"+value2.forecast.forecastday[i][x][y].time+"****************************"+"</li>";}
+                                    for(let z in value2.forecast.forecastday[i][x][y])
+                                    {
+                                        if(typeof(value2.forecast.forecastday[i][x][y][z])!='object'){
+                                            next_weather+='<li>' +z+":"+value2.forecast.forecastday[i][x][y][z]+'</li>';
+                                        }
+                                        else{    
+                                            for(let a in value2.forecast.forecastday[i][x][y][z])
+                                            {
+                                                next_weather+='<li>' +a+":"+value2.forecast.forecastday[i][x][y][z][a]+'</li>';
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                }
+               
+                }  
+            })
+        }    
+        function today(){
+                document.getElementById('current').innerHTML = today_weather;
+        } 
+        function tommarow()
+        {
+            document.getElementById('current').innerHTML = tommarow_weather;
+        }
+        function next(){
+            document.getElementById('current').innerHTML = next_weather;
+        }
+        get_data();
+    </script>
+</body>
+</html>
+<!-- http://api.weatherapi.com/v1/forecast.json?key=fcbc6d7616fb49788e3112334231201&q=London&days=10&aqi=no&alerts=no -->

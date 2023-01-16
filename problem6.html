@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            background-color: black;
+        }
+        .imgContainer{
+            width: 65%;
+            height: 450px;
+            margin: auto;
+            margin-top: 8vh;
+            box-shadow: 0px 0px 20px gray;
+            border: none;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        .imgContainer img{
+            position: absolute;
+            transition: 1s;
+            background-size: cover;
+        }
+        .btn{
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn button{
+            padding: 5px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="imgContainer">
+        <img  src="https://picsum.photos/id/237/908/450"alt="" class="slide">
+        <img  src="https://picsum.photos/id/238/908/450" alt="" class="slide">
+        <img  src="https://picsum.photos/id/239/908/450" alt="" class="slide">
+        <img  src="https://picsum.photos/id/240/908/450" alt="" class="slide">
+        <img  src="https://picsum.photos/id/241/908/450" alt="" class="slide">
+    </div>
+      <div class="btn">
+          <button id="prev" onclick="goPrev()">Prev</button>
+          <button id ="0"onclick="goNumber(0)">1</button>
+          <button id="1" onclick="goNumber(1)">2</button>
+          <button id="2" onclick="goNumber(2)">3</button>
+          <button id="3" onclick="goNumber(3)">4</button>
+          <button id="4" onclick="goNumber(4)">5</button> 
+          <button id="next" onclick="goNext()">Next</button>
+      </div>
+
+      <script>
+        const slider=document.querySelectorAll(".slide");
+        console.log(slider);
+        var counter=0;
+        slider.forEach((slide,index)=>
+        {
+            slide.style.left =`${index*100}%`
+        })
+        const slideImage=() =>{
+            slider.forEach((slide)=>{
+                slide.style.transform =`translateX(-${counter *100}%)`
+            })
+        }
+        const goNext=()=>{
+            counter++
+            if(counter>slider.length-1)
+            {
+                console.log(slider.length);
+                document.getElementById('next').style.visibility='hidden';       
+            }
+            else{
+                console.log(counter);
+                if(counter==0)
+                {
+                    document.getElementById('0').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('0').setAttribute("style","font-size:;background-color:;color:");
+                }
+                if(counter==1)
+                {
+                    document.getElementById('1').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('1').setAttribute("style","font-size:;background-color:;color:");
+                }
+                if(counter==2)
+                {
+                    document.getElementById('2').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('2').setAttribute("style","font-size:;background-color:;color:");
+                }
+                if(counter==3)
+                {
+                    document.getElementById('3').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('3').setAttribute("style","font-size:;background-color:;color:");
+                }
+                if(counter==4)
+                {
+                    document.getElementById('4').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('4').setAttribute("style","font-size:;background-color:;color:");
+                }
+                document.getElementById('prev').style.visibility='visible';   
+                slideImage();
+            }
+        }
+        const goPrev=()=>{
+            counter--
+            if(counter<0)
+            {
+                console.log(slider.length);
+                document.getElementById('prev').style.visibility='hidden';       
+            }
+            else{
+                console.log(counter);
+                if(counter==0)
+                {
+                    document.getElementById('0').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('0').setAttribute("style","font-size:;background-color:;color:");
+                }
+                if(counter==1)
+                {
+                    document.getElementById('1').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('1').setAttribute("style","font-size:;background-color:;color:");
+                }
+                if(counter==2)
+                {
+                    document.getElementById('2').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('2').setAttribute("style","font-size:;background-color:;color:");
+                }
+                if(counter==3)
+                {
+                    document.getElementById('3').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('3').setAttribute("style","font-size:;background-color:;color:");
+                }
+                if(counter==4)
+                {
+                    document.getElementById('4').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('4').setAttribute("style","font-size:;background-color:;color:");
+                }
+                document.getElementById('next').style.visibility='visible';  
+                slideImage();
+            }
+        }
+        const goNumber=(value) =>{
+            counter=value;
+            if(counter<5 && counter>=0)
+            {
+                if(value==0)
+                {
+                    document.getElementById('0').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('0').setAttribute("style","font-size:;background-color:;color:");
+                }
+                if(value==1)
+                {
+                    document.getElementById('1').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('1').setAttribute("style","font-size:;background-color:;color:");
+                }
+                if(value==2)
+                {
+                    document.getElementById('2').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('2').setAttribute("style","font-size:;background-color:;color:");
+                }
+                if(value==3)
+                {
+                    document.getElementById('3').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('3').setAttribute("style","font-size:;background-color:;color:");
+                }
+                if(value==4)
+                {
+                    document.getElementById('4').setAttribute("style","font-size:20px;background-color:#2E8B57;color:white");
+                }
+                else{ 
+                    document.getElementById('4').setAttribute("style","font-size:;background-color:;color:");
+                }
+                console.log(value);
+                document.getElementById('next').style.visibility='visible'; 
+                document.getElementById('prev').style.visibility='visible';   
+            }
+            slider.forEach((slide)=>{
+                slide.style.transform =`translateX(-${value *100}%)`
+            })
+        }
+        
+</script>
+</body>
+</html>
